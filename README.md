@@ -16,6 +16,9 @@ One can either run this project from the Terminal, or Android Studio.
 1. [Running the project](#running-the-project)
 1. You might need to copy the `local.properties` from Huckleberry into the `android` folder
 
+
+# Reference
+
 ### Updating the JavaScript
 
 `react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res`
