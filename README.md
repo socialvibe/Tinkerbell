@@ -8,8 +8,8 @@ One can either run this project from the Terminal, or Android Studio.
 
 ## Running via Android Studio
 1. `npm install`
-1. [Updating the JavaScript](#updating-the-javascript)
 1. Open the android folder as prject with Android Studio
+1. [Updating the JavaScript](#updating-the-javascript)
 1. Run and build as normal
 
 ## Running via Terminal
