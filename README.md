@@ -28,3 +28,8 @@ One can either run this project from the Terminal, or Android Studio.
 
 `sudo npm install`
 `npm run android`
+
+
+### Permission Error
+Some device might not have the Activity to handle Intent android.settings.action.MANAGE_OVERLAY_PERMISSION, and crashes. We can grant that permission via adb
+`adb shell appops set com.tinkerbell SYSTEM_ALERT_WINDOW allow`
