@@ -31,13 +31,13 @@ export default class App extends React.Component {
   };
 
   render() {
-    // if (this.state.truexStarted) {
-    //   return (
-    //     <View style={styles.container}>
-    //       <TruexAdRendererView style={styles.container} onAdEvent={this._onAdEvent} />
-    //     </View>
-    //   );
-    // }
+    if (this.state.truexStarted) {
+      return (
+        <View style={styles.container}>
+          <TruexAdRendererView style={styles.container} onAdEvent={this._onAdEvent} />
+        </View>
+      );
+    }
 
     return (
       <View style={styles.container}>
