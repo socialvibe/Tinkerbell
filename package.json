@@ -17,8 +17,8 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "react": "16.0.0",
-    "react-native": "0.50.3",
+    "react": "16.9.0",
+    "react-native": "0.61.5",
     "react-native-responsive-screen": "1.3.0",
     "prop-types": "15.7.2"
   }
