@@ -1,12 +1,17 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, Text, View, Button, ToastAndroid } from "react-native";
+import { StyleSheet, SafeAreaView, Text, View, Button, ToastAndroid } from "react-native";
   
 import TruexAdRendererView from "./components/TruexAdRendererView";
 
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: '100%'
+    height: '100%',
+    padding: '10%'
+  },
+  title: {
+    textAlign: 'center',
+    marginVertical: 8,
   }
 });
 
@@ -25,9 +30,6 @@ export default class App extends React.Component {
         truexStarted: false
       })
     }
-    var Platform = require('Platform');
-    var running_on_android_tv = Platform.isTV;
-    ToastAndroid.show(running_on_android_tv? "true":"false", ToastAndroid.SHORT);
   };
 
   render() {
@@ -40,7 +42,11 @@ export default class App extends React.Component {
     }
 
     return (
-      <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <View>
+        <Text style={styles.title}>
+          Click "Start" to start the true[X] experience.
+        </Text>
         <Button
           title="Start"
           onPress={() => {
@@ -50,6 +56,7 @@ export default class App extends React.Component {
           }}
         />
       </View>
+    </SafeAreaView>
     )
   }
 }
