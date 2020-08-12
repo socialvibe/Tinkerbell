@@ -32,6 +32,6 @@ public class TruexAdRendererPackage implements ReactPackage {
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         TruexAdRendererManager truexAdRendererManager = new TruexAdRendererManager(reactContext);
-        return Arrays.<ViewManager>asList(truexAdRendererManager);
+        return Arrays.asList(truexAdRendererManager);
     }
 }
