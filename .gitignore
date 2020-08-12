@@ -8,6 +8,7 @@
 
 # Android
 *.iml
+.idea/
 android/.idea
 .gradle
 android/custom.properties
