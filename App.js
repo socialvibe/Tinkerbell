@@ -68,6 +68,7 @@ export default class App extends React.Component {
             </Text>
             <Button
               title="Start"
+              hasTVPreferredFocus={true}
               onPress={() => {
                 this.setState({
                   truexStarted: true 
