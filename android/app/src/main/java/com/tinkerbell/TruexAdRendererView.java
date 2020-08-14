@@ -111,7 +111,7 @@ public class TruexAdRendererView extends ReactViewGroup {
     /*
    Note: This event is triggered when the ad starts
  */
-    private IEventEmitter.IEventHandler adStarted = (Map<String, ?> data) -> {
+    private IEventEmitter.IEventHandler adStarted = (String eventName, Map<String, ?> data) -> {
         receiveEvent(TruexAdRendererConstants.AD_STARTED, data);
     };
 
@@ -119,14 +119,14 @@ public class TruexAdRendererView extends ReactViewGroup {
        Note: This event is triggered when the engagement is completed,
        either by the completion of the engagement or the user exiting the engagement
      */
-    private IEventEmitter.IEventHandler adCompleted = (Map<String, ?> data) -> {
+    private IEventEmitter.IEventHandler adCompleted = (String eventName, Map<String, ?> data) -> {
         receiveEvent(TruexAdRendererConstants.AD_COMPLETED, data);
     };
 
     /*
        Note: This event is triggered when an error is encountered by the true[X] ad renderer
      */
-    private IEventEmitter.IEventHandler adError = (Map<String, ?> data) -> {
+    private IEventEmitter.IEventHandler adError = (String eventName, Map<String, ?> data) -> {
         receiveEvent(TruexAdRendererConstants.AD_ERROR, data);
     };
 
@@ -134,14 +134,14 @@ public class TruexAdRendererView extends ReactViewGroup {
        Note: This event is triggered if the engagement fails to load,
        as a result of there being no engagements available
      */
-    private IEventEmitter.IEventHandler noAds = (Map<String, ?> data) -> {
+    private IEventEmitter.IEventHandler noAds = (String eventName, Map<String, ?> data) -> {
         receiveEvent(TruexAdRendererConstants.NO_ADS_AVAILABLE, data);
     };
 
     /*
        Note: This event is not currently being used
      */
-    private IEventEmitter.IEventHandler popup = (Map<String, ?> data) -> {
+    private IEventEmitter.IEventHandler popup = (String eventName, Map<String, ?> data) -> {
         receiveEvent(TruexAdRendererConstants.POPUP_WEBSITE, data);
     };
 
@@ -150,21 +150,21 @@ public class TruexAdRendererView extends ReactViewGroup {
        could skip over the linear ads here, so that when the ad is complete, all we would need
        to do is resume the stream.
      */
-    private IEventEmitter.IEventHandler adFree = (Map<String, ?> data) -> {
+    private IEventEmitter.IEventHandler adFree = (String eventName, Map<String, ?> data) -> {
         receiveEvent(TruexAdRendererConstants.AD_FREE_POD, data);
     };
 
     /*
        Note: This event is triggered when a user cancels an interactive engagement
      */
-    private IEventEmitter.IEventHandler userCancel = (Map<String, ?> data) -> {
+    private IEventEmitter.IEventHandler userCancel = (String eventName, Map<String, ?> data) -> {
         receiveEvent(TruexAdRendererConstants.USER_CANCEL, data);
     };
 
     /*
        Note: This event is triggered when a user opts-in to an interactive engagement
      */
-    private IEventEmitter.IEventHandler optIn = (Map<String, ?> data) -> {
+    private IEventEmitter.IEventHandler optIn = (String eventName, Map<String, ?> data) -> {
         receiveEvent(TruexAdRendererConstants.OPT_IN, data);
     };
 
@@ -172,7 +172,7 @@ public class TruexAdRendererView extends ReactViewGroup {
        Note: This event is triggered when a user opts-out of an interactive engagement,
        either by time-out, or by choice
      */
-    private IEventEmitter.IEventHandler optOut = (Map<String, ?> data) -> {
+    private IEventEmitter.IEventHandler optOut = (String eventName, Map<String, ?> data) -> {
         receiveEvent(TruexAdRendererConstants.OPT_OUT, data);
     };
 
@@ -180,7 +180,7 @@ public class TruexAdRendererView extends ReactViewGroup {
        Note: This event is triggered when a skip card is being displayed to the user
        This occurs when a user is able to skip ads
      */
-    private IEventEmitter.IEventHandler skipCardShown = (Map<String, ?> data) -> {
+    private IEventEmitter.IEventHandler skipCardShown = (String eventName, Map<String, ?> data) -> {
         receiveEvent(TruexAdRendererConstants.SKIP_CARD_SHOWN, data);
     };
 
@@ -188,42 +188,42 @@ public class TruexAdRendererView extends ReactViewGroup {
        Note: This event is triggered when the ad has been fetched
        This event occurs before the following events: AD_STARTED, NO_ADS_AVAILABLE, and AD_ERROR.
      */
-    private IEventEmitter.IEventHandler adFetchCompleted = (Map<String, ?> data) -> {
+    private IEventEmitter.IEventHandler adFetchCompleted = (String eventName, Map<String, ?> data) -> {
         receiveEvent(TruexAdRendererConstants.AD_FETCH_COMPLETED, data);
     };
 
     /*
        Note: This event is triggered when a video starts playing within the true[X] Ad Renderer (TAR)
      */
-    private IEventEmitter.IEventHandler videoStarted = (Map<String, ?> data) -> {
+    private IEventEmitter.IEventHandler videoStarted = (String eventName, Map<String, ?> data) -> {
         receiveEvent(TruexAdRendererConstants.VIDEO_STARTED, data);
     };
 
     /*
        Note: This event is triggered when a video reaches the first quartile within the true[X] Ad Renderer (TAR)
     */
-    private IEventEmitter.IEventHandler videoFirstQuartile = (Map<String, ?> data) -> {
+    private IEventEmitter.IEventHandler videoFirstQuartile = (String eventName, Map<String, ?> data) -> {
         receiveEvent(TruexAdRendererConstants.VIDEO_FIRST_QUARTILE, data);
     };
 
     /*
        Note: This event is triggered when a video reaches the second quartile within the true[X] Ad Renderer (TAR)
     */
-    private IEventEmitter.IEventHandler videoSecondQuartile = (Map<String, ?> data) -> {
+    private IEventEmitter.IEventHandler videoSecondQuartile = (String eventName, Map<String, ?> data) -> {
         receiveEvent(TruexAdRendererConstants.VIDEO_SECOND_QUARTILE, data);
     };
 
     /*
        Note: This event is triggered when a video reaches the third quartile within the true[X] Ad Renderer (TAR)
     */
-    private IEventEmitter.IEventHandler videoThirdQuartile = (Map<String, ?> data) -> {
+    private IEventEmitter.IEventHandler videoThirdQuartile = (String eventName, Map<String, ?> data) -> {
         receiveEvent(TruexAdRendererConstants.VIDEO_THIRD_QUARTILE, data);
     };
 
     /*
        Note: This event is triggered when a video finishes playing within the true[X] Ad Renderer (TAR)
     */
-    private IEventEmitter.IEventHandler videoCompleted = (Map<String, ?> data) -> {
+    private IEventEmitter.IEventHandler videoCompleted = (String eventName, Map<String, ?> data) -> {
         receiveEvent(TruexAdRendererConstants.VIDEO_COMPLETED, data);
     };
 }

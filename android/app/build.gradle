@@ -152,7 +152,7 @@ dependencies {
     implementation ('com.facebook.react:react-native:0.55.4') { force = true }
 
     // True[x] Ad Renderer (TAR) Dependency
-    implementation 'com.truex:TruexAdRenderer-tv:2.2.1'
+    implementation 'com.truex:TruexAdRenderer-tv:2.3.0'
 }
 
 // Run this once to be able to run the application with BUCK
