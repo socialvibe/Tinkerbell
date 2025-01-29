@@ -1,65 +1,97 @@
-## Table of Contents
+This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
-* [Updating the JavaScript](#updating-the-javascript)
-* [Running the project](#running-the-project)
+# Getting Started
 
-# Running the project
-One can either run this project from the Terminal, or Android Studio.
+> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
 
-## Running via Android Studio
-1. `npm install`
-1. Open the android folder as prject with Android Studio
-1. [Updating the JavaScript](#updating-the-javascript), which would be the version that the app tries to use when it can't reach the server
-1. Run and build as normal
+## Step 1: Start Metro
 
-* note: if your project is crashing, you might encountered the [Permission Error](#permission-error)
+First, you will need to run **Metro**, the JavaScript build tool for React Native.
 
-## Running via Terminal
-1. [Running the project](#running-the-project)
-1. You might need to create, or copy the `local.properties` file from another Android project into the `android` folder. Read more about the [properties-files](https://developer.android.com/studio/build#properties-files) here
+To start the Metro dev server, run the following command from the root of your React Native project:
 
-* note: if you are not seeing your change, you might had run into the [ADB reverse tcp Failure](#adb-reverse-tcp-failed)
+```sh
+# Using npm
+npm start
 
-# Reference
+# OR using Yarn
+yarn start
+```
 
-### Updating the JavaScript
+## Step 2: Build and run your app
 
-`react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res`
+With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
 
+### Android
 
-### Running the project ##
+```sh
+# Using npm
+npm run android
 
-`sudo npm install`
-`npm run android`
+# OR using Yarn
+yarn android
+```
 
-# Note
+### iOS
 
-### ADB version
-React native uses the `adb reverse` comment, and for that to work, your adb version must be `1.0.40` or above.
-Check your adb version by:
-`# adb --version`
-`# 1.0.40`
-You can download the up-to-date platform tools here: https://developer.android.com/studio/releases/platform-tools
+For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
 
-### Connect without `adb reverse`
-Some of the Android Rom (devices) seems to have problem with `adb reverse` (Fire TV for example). We can connect those devices by:
-1. Launch the React Native debug menu by:
-    1. Clicking the "menu/option key" (≡), or
-    1. Long press on fast-forward button ▷▷
-    1. `adb shell input keyevent 82`
-1. Click Dev Settings
-1. Under `Debugging`, click "Debug server host & port for device"
-1. Enter your dev machine's ipaddress, follow by the port. Ex: `192.168.12.34:8081`
-1. Click "OK" to save
-1. Go back, launch the debug menu again, and click Reload
+The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
 
-### ADB reverse tcp Failed
-When ADB is connecting while tcp/ip, there seems to be a ADB bug that prevent the reverse tcp command to work. The erorr looks a bit like this:
-> adb: error: more than one device/emulator
-1. Connect via a wire/usb
-1. People claim there are [work arounds](https://stackoverflow.com/questions/51592477/adb-s-192-168-1-65555-error-more-than-one-device-emulator#answer-60304950)
-1. Or [Connect without adb reverse](#connect-without-adb-reverse)
+```sh
+bundle install
+```
 
-### Permission Error
-Some device might not have the Activity to handle Intent android.settings.action.MANAGE_OVERLAY_PERMISSION, and crashes. We can grant that permission via adb
-`adb shell appops set com.tinkerbell SYSTEM_ALERT_WINDOW allow`
+Then, and every time you update your native dependencies, run:
+
+```sh
+bundle exec pod install
+```
+
+For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+
+```sh
+# Using npm
+npm run ios
+
+# OR using Yarn
+yarn ios
+```
+
+If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+
+This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+
+## Step 3: Modify your app
+
+Now that you have successfully run the app, let's make changes!
+
+Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+
+When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+
+- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
+- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+
+## Congratulations! :tada:
+
+You've successfully run and modified your React Native App. :partying_face:
+
+### Now what?
+
+- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
+- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+
+# Troubleshooting
+
+If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+
+# Learn More
+
+To learn more about React Native, take a look at the following resources:
+
+- [React Native Website](https://reactnative.dev) - learn more about React Native.
+- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
+- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
+- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
+- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
