@@ -3,6 +3,8 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
+    "clean": "rm -rf android/build android/app/build",
+    "codegen": "cd android && ./gradlew generateCodegenArtifactsFromSchema",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
