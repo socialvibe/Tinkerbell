@@ -9,6 +9,19 @@
     "start": "react-native start",
     "test": "jest"
   },
+  "codegenConfig": {
+    "name": "TruexAdRendererSpec",
+    "type": "components",
+    "jsSrcsDir": "specs",
+    "android": {
+      "javaPackageName": "com.tinkerbell.tar"
+    },
+    "ios": {
+      "componentProvider": {
+        "CustomWebView": "RTCTruexAdRendererView"
+      }
+    }
+  },
   "dependencies": {
     "react": "18.3.1",
     "react-native": "0.77.0",
