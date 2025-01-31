@@ -25,6 +25,7 @@ export interface TruexAdEvent {
   timeout?: Double;
   userInitiated?: boolean;
   errorMessage?: string;
+  url?: string;
 }
 
 export function isCompletionEvent(eventType: TruexAdEventType) {
