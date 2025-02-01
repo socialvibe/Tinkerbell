@@ -35,8 +35,6 @@ export interface TruexAdViewProps extends ViewProps {
   onAdEvent: DirectEventHandler<TruexAdEvent>;
 }
 
-export const TruexAdView = codegenNativeComponent<TruexAdViewProps>(
+export default codegenNativeComponent<TruexAdViewProps>(
   'TruexAdView',
 ) as HostComponent<TruexAdViewProps>;
-
-export default TruexAdView;

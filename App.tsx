@@ -7,7 +7,7 @@ import {Button, type NativeSyntheticEvent, SafeAreaView, StyleSheet, Text, View}
 
 import Video from 'react-native-video';
 
-import {toAdEventType, TruexAdEvent, TruexAdEventType, TruexAdView} from './specs/TruexAdViewNativeComponent.ts';
+import TruexAdView, {toAdEventType, TruexAdEvent, TruexAdEventType} from './specs/TruexAdViewNativeComponent.ts';
 
 function App(): React.JSX.Element {
   const [isShowingTruex, setShowingTruex] = useState(false);
