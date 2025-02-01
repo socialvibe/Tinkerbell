@@ -2,10 +2,67 @@
  * Tinkerbell: Sample Truex React Native Demonstration App
  */
 
-import React, {useCallback, useRef, useState} from "react";
-import {StyleSheet, SafeAreaView, Text, View, Button, ToastAndroid, TextInput} from "react-native";
+import React, {useCallback, useState} from "react";
+import {Button, type NativeSyntheticEvent, SafeAreaView, StyleSheet, Text, View} from "react-native";
 
 import Video from 'react-native-video';
+
+import {
+  isCompletionEvent,
+  toAdEventType,
+  TruexAdEvent,
+  TruexAdEventType,
+  TruexAdView
+} from './specs/TruexAdRendererNativeComponent';
+
+function App(): React.JSX.Element {
+  const [isShowingTruex, setShowingTruex] = useState(false);
+
+  const onAdEvent = useCallback((dispatchedEvent: NativeSyntheticEvent<TruexAdEvent>) => {
+    const event = dispatchedEvent.nativeEvent;
+    const data = event.url || event.errorMessage || '';
+    const dataSuffix = data ? ': ' + data : '';
+    console.log(`onAdEvent: ${event.eventType}${dataSuffix}`);
+
+    const eventType = toAdEventType(event.eventType);
+    if (isCompletionEvent(eventType)) {
+      setShowingTruex(false);
+
+    } else if (eventType == TruexAdEventType.PopupWebsite) {
+      // TODO: open external site
+    }
+  }, []);
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <Video
+        source={{uri: "https://media.truex.com/video_assets/2017-03-06/a9fbc895-6987-440e-b940-eeef8a714338_large.mp4"}}
+        resizeMode="contain"
+        paused={isShowingTruex}
+        style={styles.backgroundVideo}/>
+      {isShowingTruex ? (
+        <TruexAdView
+          vastConfigUrl='https://get.truex.com/6789e783ea2421ab2272794dbf8550ef2a9ace38/vast/config?dimension_5=confirmation-test&network_user_id=test-user-123&user_agent=Android'
+          onAdEvent={onAdEvent}/>
+      ) : (
+        <View style={styles.mainView}>
+          <Text style={styles.title}>
+            Click "Start" to start the true[X] experience.
+          </Text>
+          <Button
+            title="Start"
+            hasTVPreferredFocus={true}
+            onPress={() => {
+              setShowingTruex(true);
+            }}
+          />
+        </View>
+      )}
+    </SafeAreaView>
+  );
+}
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
@@ -43,44 +100,3 @@ const styles = StyleSheet.create({
     color: '#ffffff'
   }
 });
-
-function App(): React.JSX.Element {
-  const [isShowingTruex, setShowingTruex] = useState(false);
-
-  const onAdEvent = useCallback((event: String, data: any) => {
-    console.log(`onAdEvent: ${event}`);
-  }, []);
-
-  return (
-    <SafeAreaView style={styles.container}>
-      <Video
-        source={{uri: "https://media.truex.com/video_assets/2017-03-06/a9fbc895-6987-440e-b940-eeef8a714338_large.mp4"}}
-        resizeMode="contain"
-        paused={isShowingTruex}
-        style={styles.backgroundVideo}/>
-      {isShowingTruex ? (
-        // <TruexAdRendererView onAdEvent={onAdEvent} />
-        <View style={styles.adContainer}>
-          <Text style={styles.title}>
-            TBD: TruexAdRenderer
-          </Text>
-        </View>
-      ) : (
-        <View style={styles.mainView}>
-          <Text style={styles.title}>
-            Click "Start" to start the true[X] experience.
-          </Text>
-          <Button
-            title="Start"
-            hasTVPreferredFocus={true}
-            onPress={() => {
-              setShowingTruex(true);
-            }}
-          />
-        </View>
-      )}
-    </SafeAreaView>
-  );
-}
-
-export default App;

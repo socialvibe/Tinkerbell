@@ -20,13 +20,13 @@ export enum TruexAdEventType {
   PopupWebsite = "popupWebsite"
 }
 
-export interface TruexAdEvent {
-  eventType: string;
-  errorMessage?: string;
-  url?: string;
+export function toAdEventType(name: string): TruexAdEventType | undefined {
+  if (Object.values(TruexAdEventType)) return name as TruexAdEventType;
+  return undefined;
 }
 
-export function isCompletionEvent(eventType: TruexAdEventType) {
+export function isCompletionEvent(eventType: TruexAdEventType | string | undefined) {
+  if (typeof(eventType) == 'string') eventType = toAdEventType(eventType);
   switch (eventType) {
     case TruexAdEventType.NoAdsAvailable:
     case TruexAdEventType.AdCompleted:
@@ -37,11 +37,19 @@ export function isCompletionEvent(eventType: TruexAdEventType) {
   return false;
 }
 
+export interface TruexAdEvent {
+  eventType: string;
+  errorMessage?: string;
+  url?: string;
+}
+
 export interface TruexAdViewProps extends ViewProps {
   vastConfigUrl: string;
   onAdEvent: DirectEventHandler<TruexAdEvent>;
 }
 
-export default codegenNativeComponent<TruexAdViewProps>(
+export const TruexAdView = codegenNativeComponent<TruexAdViewProps>(
   'TruexAdView',
 ) as HostComponent<TruexAdViewProps>;
+
+export default TruexAdView;
