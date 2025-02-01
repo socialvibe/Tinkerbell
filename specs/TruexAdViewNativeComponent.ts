@@ -1,7 +1,6 @@
-import {Animated, HostComponent, ViewProps} from 'react-native';
-import type {DirectEventHandler, Double} from 'react-native/Libraries/Types/CodegenTypes';
+import {HostComponent, ViewProps} from 'react-native';
+import type {DirectEventHandler} from 'react-native/Libraries/Types/CodegenTypes';
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
-import Nullable = Animated.Nullable;
 
 export enum TruexAdEventType {
   AdStarted = 'adStarted',
@@ -21,7 +20,7 @@ export enum TruexAdEventType {
 }
 
 export function toAdEventType(name: string): TruexAdEventType | undefined {
-  if (Object.values(TruexAdEventType)) return name as TruexAdEventType;
+  if (Object.values(TruexAdEventType).includes(name as any)) return name as TruexAdEventType;
   return undefined;
 }
 

@@ -13,18 +13,21 @@ import {
   TruexAdEvent,
   TruexAdEventType,
   TruexAdView
-} from './specs/TruexAdRendererNativeComponent';
+} from './specs/TruexAdViewNativeComponent.ts';
 
 function App(): React.JSX.Element {
   const [isShowingTruex, setShowingTruex] = useState(false);
 
   const onAdEvent = useCallback((dispatchedEvent: NativeSyntheticEvent<TruexAdEvent>) => {
     const event = dispatchedEvent.nativeEvent;
+    const eventType = toAdEventType(event.eventType);
+
     const data = event.url || event.errorMessage || '';
     const dataSuffix = data ? ': ' + data : '';
-    console.log(`onAdEvent: ${event.eventType}${dataSuffix}`);
+    const logMessage = `onAdEvent: ${event.eventType}${dataSuffix}`;
+    if (eventType == TruexAdEventType.AdError) console.error(logMessage);
+    else console.log(logMessage);
 
-    const eventType = toAdEventType(event.eventType);
     if (isCompletionEvent(eventType)) {
       setShowingTruex(false);
 
