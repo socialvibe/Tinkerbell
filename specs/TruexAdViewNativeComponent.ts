@@ -24,18 +24,6 @@ export function toAdEventType(name: string): TruexAdEventType | undefined {
   return undefined;
 }
 
-export function isCompletionEvent(eventType: TruexAdEventType | string | undefined) {
-  if (typeof(eventType) == 'string') eventType = toAdEventType(eventType);
-  switch (eventType) {
-    case TruexAdEventType.NoAdsAvailable:
-    case TruexAdEventType.AdCompleted:
-    case TruexAdEventType.AdError:
-    case TruexAdEventType.UserCancelStream:
-      return true;
-  }
-  return false;
-}
-
 export interface TruexAdEvent {
   eventType: string;
   errorMessage?: string;

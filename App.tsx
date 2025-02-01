@@ -7,13 +7,7 @@ import {Button, type NativeSyntheticEvent, SafeAreaView, StyleSheet, Text, View}
 
 import Video from 'react-native-video';
 
-import {
-  isCompletionEvent,
-  toAdEventType,
-  TruexAdEvent,
-  TruexAdEventType,
-  TruexAdView
-} from './specs/TruexAdViewNativeComponent.ts';
+import {toAdEventType, TruexAdEvent, TruexAdEventType, TruexAdView} from './specs/TruexAdViewNativeComponent.ts';
 
 function App(): React.JSX.Element {
   const [isShowingTruex, setShowingTruex] = useState(false);
@@ -28,11 +22,18 @@ function App(): React.JSX.Element {
     if (eventType == TruexAdEventType.AdError) console.error(logMessage);
     else console.log(logMessage);
 
-    if (isCompletionEvent(eventType)) {
-      setShowingTruex(false);
+    switch (eventType) {
+      case TruexAdEventType.PopupWebsite:
+        // TODO: open external site
+        break;
 
-    } else if (eventType == TruexAdEventType.PopupWebsite) {
-      // TODO: open external site
+      // Completion events:
+      case TruexAdEventType.NoAdsAvailable:
+      case TruexAdEventType.AdCompleted:
+      case TruexAdEventType.AdError:
+      case TruexAdEventType.UserCancelStream:
+        setShowingTruex(false);
+        break;
     }
   }, []);
 
