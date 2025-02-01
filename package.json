@@ -20,7 +20,7 @@
     },
     "ios": {
       "componentProvider": {
-        "CustomWebView": "RTCTruexAdRendererView"
+        "CustomWebView": "RTCTruexAdView"
       }
     }
   },

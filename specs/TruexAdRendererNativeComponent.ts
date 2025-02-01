@@ -22,8 +22,6 @@ export enum TruexAdEventType {
 
 export interface TruexAdEvent {
   eventType: string;
-  timeout?: Double;
-  userInitiated?: boolean;
   errorMessage?: string;
   url?: string;
 }
@@ -39,11 +37,11 @@ export function isCompletionEvent(eventType: TruexAdEventType) {
   return false;
 }
 
-export interface TruexAdRendererProps extends ViewProps {
+export interface TruexAdViewProps extends ViewProps {
   vastConfigUrl: string;
   onAdEvent: DirectEventHandler<TruexAdEvent>;
 }
 
-export default codegenNativeComponent<TruexAdRendererProps>(
-  'TruexAdRenderer',
-) as HostComponent<TruexAdRendererProps>;
+export default codegenNativeComponent<TruexAdViewProps>(
+  'TruexAdView',
+) as HostComponent<TruexAdViewProps>;
