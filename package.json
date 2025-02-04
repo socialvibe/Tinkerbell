@@ -1,6 +1,6 @@
 {
   "name": "Tinkerbell",
-  "version": "0.0.1",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "clean": "rm -rf android/build android/app/build android/app/.cxx",
