@@ -1,33 +1,20 @@
 {
   "name": "Tinkerbell",
-  "version": "2.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
-    "clean": "rm -rf android/build android/app/build",
+    "clean": "rm -rf android/build android/app/build android/app/.cxx",
     "codegen": "cd android && ./gradlew generateCodegenArtifactsFromSchema",
     "android": "react-native run-android",
+    "rebuild-android": "npm run clean && npm run android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest"
   },
-  "xcodegenConfig": {
-    "name": "TruexAdRendererSpec",
-    "type": "components",
-    "jsSrcsDir": "specs",
-    "android": {
-      "javaPackageName": "com.tinkerbell.tar"
-    },
-    "ios": {
-      "componentProvider": {
-        "CustomWebView": "RTCTruexAdView"
-      }
-    }
-  },
   "dependencies": {
     "react": "18.3.1",
-    "react-native": "0.77.0",
-    "react-native-video": "^6.10.0"
+    "react-native": "0.77.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

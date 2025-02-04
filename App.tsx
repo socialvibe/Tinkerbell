@@ -1,113 +1,118 @@
 /**
- * Tinkerbell: Sample Truex React Native Demonstration App
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
  */
 
-import React, {useCallback, useState} from "react";
-import {Button, type NativeSyntheticEvent, SafeAreaView, StyleSheet, Text, View} from "react-native";
+import React from 'react';
+import type {PropsWithChildren} from 'react';
+import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+} from 'react-native';
 
-import Video from 'react-native-video';
+import {
+  Colors,
+  DebugInstructions,
+  Header,
+  LearnMoreLinks,
+  ReloadInstructions,
+} from 'react-native/Libraries/NewAppScreen';
 
-//import TruexAdView, {toAdEventType, TruexAdEvent, TruexAdEventType} from './specs/TruexAdViewNativeComponent.ts';
+type SectionProps = PropsWithChildren<{
+  title: string;
+}>;
+
+function Section({children, title}: SectionProps): React.JSX.Element {
+  const isDarkMode = useColorScheme() === 'dark';
+  return (
+    <View style={styles.sectionContainer}>
+      <Text
+        style={[
+          styles.sectionTitle,
+          {
+            color: isDarkMode ? Colors.white : Colors.black,
+          },
+        ]}>
+        {title}
+      </Text>
+      <Text
+        style={[
+          styles.sectionDescription,
+          {
+            color: isDarkMode ? Colors.light : Colors.dark,
+          },
+        ]}>
+        {children}
+      </Text>
+    </View>
+  );
+}
 
 function App(): React.JSX.Element {
-  const [isShowingTruex, setShowingTruex] = useState(false);
+  const isDarkMode = useColorScheme() === 'dark';
 
-  /*
-    const onAdEvent = useCallback((dispatchedEvent: NativeSyntheticEvent<TruexAdEvent>) => {
-      const event = dispatchedEvent.nativeEvent;
-      const eventType = toAdEventType(event.eventType);
-
-      const data = event.url || event.errorMessage || '';
-      const dataSuffix = data ? ': ' + data : '';
-      const logMessage = `onAdEvent: ${event.eventType}${dataSuffix}`;
-      if (eventType == TruexAdEventType.AdError) console.error(logMessage);
-      else console.log(logMessage);
-
-      switch (eventType) {
-        case TruexAdEventType.PopupWebsite:
-          // TODO: open external site
-          break;
-
-        // Completion events:
-        case TruexAdEventType.NoAdsAvailable:
-        case TruexAdEventType.AdCompleted:
-        case TruexAdEventType.AdError:
-        case TruexAdEventType.UserCancelStream:
-          setShowingTruex(false);
-          break;
-      }
-  }, []);
-*/
+  const backgroundStyle = {
+    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Video
-        source={{uri: "https://media.truex.com/video_assets/2017-03-06/a9fbc895-6987-440e-b940-eeef8a714338_large.mp4"}}
-        resizeMode="contain"
-        paused={isShowingTruex}
-        style={styles.backgroundVideo}/>
-      {isShowingTruex ? (
-        // <TruexAdView
-        //   vastConfigUrl='https://get.truex.com/6789e783ea2421ab2272794dbf8550ef2a9ace38/vast/config?dimension_5=confirmation-test&network_user_id=test-user-123&user_agent=Android'
-        //   onAdEvent={onAdEvent}/>
-        <View style={styles.adContainer}>
-          <Text style={styles.title}>
-            TBD: TruexAdRenderer
-          </Text>
+    <SafeAreaView style={backgroundStyle}>
+      <StatusBar
+        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        backgroundColor={backgroundStyle.backgroundColor}
+      />
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        style={backgroundStyle}>
+        <Header />
+        <View
+          style={{
+            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+          }}>
+          <Section title="Step One">
+            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
+            screen and then come back to see your edits.
+          </Section>
+          <Section title="See Your Changes">
+            <ReloadInstructions />
+          </Section>
+          <Section title="Debug">
+            <DebugInstructions />
+          </Section>
+          <Section title="Learn More">
+            Read the docs to discover what to do next:
+          </Section>
+          <LearnMoreLinks />
         </View>
-      ) : (
-        <View style={styles.mainView}>
-          <Text style={styles.title}>
-            Click "Start" to start the true[X] experience.
-          </Text>
-          <Button
-            title="Start"
-            hasTVPreferredFocus={true}
-            onPress={() => {
-              setShowingTruex(true);
-            }}
-          />
-        </View>
-      )}
+      </ScrollView>
     </SafeAreaView>
   );
 }
 
-export default App;
-
 const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    height: '100%'
+  sectionContainer: {
+    marginTop: 32,
+    paddingHorizontal: 24,
   },
-  adContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    color: 'white',
-    backgroundColor: 'black'
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: '600',
   },
-  backgroundVideo: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0
+  sectionDescription: {
+    marginTop: 8,
+    fontSize: 18,
+    fontWeight: '400',
   },
-  mainView: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    padding: '10%',
-    backgroundColor: 'rgba(0,0,0,.8)'
+  highlight: {
+    fontWeight: '700',
   },
-  title: {
-    textAlign: 'center',
-    marginVertical: 8,
-    color: '#ffffff'
-  }
 });
+
+export default App;
