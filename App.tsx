@@ -5,25 +5,9 @@
  * @format
  */
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import React, {useCallback, useState} from 'react';
+import {Button, SafeAreaView, StyleSheet, Text, View,} from 'react-native';
+import Video from "react-native-video";
 
 function App(): React.JSX.Element {
   const [isShowingTruex, setShowingTruex] = useState(false);
