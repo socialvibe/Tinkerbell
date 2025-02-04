@@ -39,6 +39,7 @@ public class TruexAdView extends FrameLayout {
 
   private void configureComponent() {
     this.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+    this.setBackgroundColor(Color.BLUE);
   }
 
   public void startAd(String vastConfigUrl) {
@@ -54,7 +55,9 @@ public class TruexAdView extends FrameLayout {
     TextView text = new TextView(getContext());
     text.setText("This is the TruexAdRenderer");
     text.setTextColor(Color.RED);
+    text.setBackgroundColor(Color.BLACK);
     this.addView(text);
+    text.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
   }
 
   public void emitAdError(String message) {
