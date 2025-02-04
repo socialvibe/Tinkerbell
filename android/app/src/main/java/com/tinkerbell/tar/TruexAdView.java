@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -49,6 +50,10 @@ public class TruexAdView extends FrameLayout {
 //
 //    truexAdRenderer.init(vastConfigUrl);
 //    truexAdRenderer.start(this);
+    TextView text = new TextView(getContext());
+    text.setText("This is the TruexAdRenderer");
+    text.setTextColor(255);
+    this.addView(text);
   }
 
   public void emitAdError(String message) {

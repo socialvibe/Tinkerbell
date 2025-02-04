@@ -39,25 +39,15 @@ class TruexAdViewManager extends SimpleViewManager<TruexAdView> implements Truex
     return new TruexAdView(context);
   }
 
-  @ReactProp(name = "sourceURL")
+  @ReactProp(name = "vastConfigUrl")
   @Override
-  public void setSourceURL(TruexAdView view, String vastConfigUrl) {
+  public void setVastConfigUrl(TruexAdView view, String vastConfigUrl) {
     if (vastConfigUrl == null || vastConfigUrl.isEmpty() || vastConfigUrl.isBlank()) {
       view.emitAdError("missing or invalid vast config url: " + vastConfigUrl);
       return;
     }
     view.startAd(vastConfigUrl);
   }
-
-//  @ReactProp(name = "vastConfigUrl")
-//  @Override
-//  public void setVastConfigUrl(TruexAdView view, String vastConfigUrl) {
-//    if (vastConfigUrl == null || vastConfigUrl.isEmpty() || vastConfigUrl.isBlank()) {
-//      view.emitAdError("missing or invalid vast config url: " + vastConfigUrl);
-//      return;
-//    }
-//    view.startAd(vastConfigUrl);
-//  }
 
   @Nullable
   @Override
