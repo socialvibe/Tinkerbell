@@ -1,6 +1,7 @@
 package com.tinkerbell.tar;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -52,7 +53,7 @@ public class TruexAdView extends FrameLayout {
 //    truexAdRenderer.start(this);
     TextView text = new TextView(getContext());
     text.setText("This is the TruexAdRenderer");
-    text.setTextColor(255);
+    text.setTextColor(Color.RED);
     this.addView(text);
   }
 

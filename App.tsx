@@ -1,19 +1,39 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
+ * Tinkerbell: Sample Truex React Native Demonstration App
  */
+import React, {useCallback, useState} from "react";
+import {Button, type NativeSyntheticEvent, SafeAreaView, StyleSheet, Text, View} from "react-native";
 
-import React, {useCallback, useState} from 'react';
-import {Button, SafeAreaView, StyleSheet, Text, View,} from 'react-native';
-import Video from "react-native-video";
+import Video from 'react-native-video';
+
+import TruexAdView, {toAdEventType, TruexAdEvent, TruexAdEventType} from './specs/TruexAdViewNativeComponent.ts';
 
 function App(): React.JSX.Element {
   const [isShowingTruex, setShowingTruex] = useState(false);
 
-  const onAdEvent = useCallback((event: String, data: any) => {
-    console.log(`onAdEvent: ${event}`);
+  const onAdEvent = useCallback((dispatchedEvent: NativeSyntheticEvent<TruexAdEvent>) => {
+    const event = dispatchedEvent.nativeEvent;
+    const eventType = toAdEventType(event.eventType);
+
+    const data = event.url || event.errorMessage || '';
+    const dataSuffix = data ? ': ' + data : '';
+    const logMessage = `onAdEvent: ${event.eventType}${dataSuffix}`;
+    if (eventType == TruexAdEventType.AdError) console.error(logMessage);
+    else console.log(logMessage);
+
+    switch (eventType) {
+      case TruexAdEventType.PopupWebsite:
+        // TODO: open external site
+        break;
+
+      // Completion events:
+      case TruexAdEventType.NoAdsAvailable:
+      case TruexAdEventType.AdCompleted:
+      case TruexAdEventType.AdError:
+      case TruexAdEventType.UserCancelStream:
+        setShowingTruex(false);
+        break;
+    }
   }, []);
 
   return (
@@ -24,12 +44,9 @@ function App(): React.JSX.Element {
         paused={isShowingTruex}
         style={styles.backgroundVideo}/>
       {isShowingTruex ? (
-        // <TruexAdRendererView onAdEvent={onAdEvent} />
-        <View style={styles.adContainer}>
-          <Text style={styles.title}>
-            TBD: TruexAdRenderer
-          </Text>
-        </View>
+        <TruexAdView
+          vastConfigUrl='https://get.truex.com/6789e783ea2421ab2272794dbf8550ef2a9ace38/vast/config?dimension_5=confirmation-test&network_user_id=test-user-123&user_agent=Android'
+          onAdEvent={onAdEvent}/>
       ) : (
         <View style={styles.mainView}>
           <Text style={styles.title}>
