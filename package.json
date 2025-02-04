@@ -11,7 +11,7 @@
     "start": "react-native start",
     "test": "jest"
   },
-  "codegenConfig": {
+  "xcodegenConfig": {
     "name": "TruexAdRendererSpec",
     "type": "components",
     "jsSrcsDir": "specs",
