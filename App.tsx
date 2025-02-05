@@ -40,6 +40,7 @@ function App(): React.JSX.Element {
     <SafeAreaView style={styles.container}>
       {isShowingTruex ? (
         <TruexAdView
+          style={styles.adContainer}
           vastConfigUrl='https://get.truex.com/6789e783ea2421ab2272794dbf8550ef2a9ace38/vast/config?dimension_5=confirmation-test&network_user_id=test-user-123&user_agent=Android'
           onAdEvent={onAdEvent}/>
         // <View style={styles.adContainer}>

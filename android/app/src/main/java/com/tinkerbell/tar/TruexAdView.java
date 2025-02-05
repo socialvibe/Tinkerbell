@@ -3,6 +3,7 @@ package com.tinkerbell.tar;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import com.facebook.react.uimanager.events.EventDispatcher;
 //import com.truex.adrenderer.TruexAdRenderer;
 
 public class TruexAdView extends FrameLayout {
+  private final static String CLASS_NAME = TruexAdView.class.getSimpleName();
 
   //private TruexAdRenderer truexAdRenderer;
 
@@ -38,11 +40,23 @@ public class TruexAdView extends FrameLayout {
   }
 
   private void configureComponent() {
+    Log.i(CLASS_NAME, "*** configureComponent");
+
     this.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     this.setBackgroundColor(Color.BLUE);
+
+    TextView text = new TextView(getContext());
+    text.setText("This is the TruexAdRenderer");
+    text.setTextColor(Color.RED);
+    text.setBackgroundColor(Color.BLACK);
+    text.setLayoutParams(new MarginLayoutParams(300, 300));
+    this.addView(text);
+
+    Log.i(CLASS_NAME, "*** configureComponent complete");
   }
 
   public void startAd(String vastConfigUrl) {
+    Log.i(CLASS_NAME, "*** startAd: " + vastConfigUrl);
 //    if (truexAdRenderer != null) {
 //      truexAdRenderer.stop();
 //    }
@@ -52,12 +66,6 @@ public class TruexAdView extends FrameLayout {
 //
 //    truexAdRenderer.init(vastConfigUrl);
 //    truexAdRenderer.start(this);
-    TextView text = new TextView(getContext());
-    text.setText("This is the TruexAdRenderer");
-    text.setTextColor(Color.RED);
-    text.setBackgroundColor(Color.BLACK);
-    this.addView(text);
-    text.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
   }
 
   public void emitAdError(String message) {
