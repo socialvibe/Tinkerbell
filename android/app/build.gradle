@@ -107,6 +107,12 @@ android {
     }
 }
 
+repositories {
+    maven {
+        url "https://s3.amazonaws.com/android.truex.com/tar/prod/maven"
+    }
+}
+
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
@@ -116,4 +122,6 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    implementation 'com.truex:TruexAdRenderer-Android:2.9.2'
 }
