@@ -109,7 +109,9 @@ android {
 
 repositories {
     maven {
-        url "https://s3.amazonaws.com/android.truex.com/tar/prod/maven"
+        // Comment/uncomment qa vs prod repo as needed.
+        //url "https://s3.amazonaws.com/android.truex.com/tar/prod/maven"
+        url "https://s3.amazonaws.com/android.truex.com/tar/qa/maven"
     }
 }
 
@@ -117,5 +119,11 @@ dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
     implementation jscFlavor
-//    implementation("com.truex:TruexAdRenderer-Android:2.9.2")
+
+    // External Library Dependency
+    // implementation("com.truex:TruexAdRenderer-Android:2.10.2")
+
+    // Local Project dependency
+    // Also need to uncomment settings under settings.gradle
+    implementation project(':TruexAdRenderer')
 }

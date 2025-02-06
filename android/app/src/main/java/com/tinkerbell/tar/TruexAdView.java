@@ -44,13 +44,13 @@ public class TruexAdView extends FrameLayout {
 
     this.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     this.setBackgroundColor(Color.BLACK);
-
-    TextView text = new TextView(getContext());
-    text.setText("This is the TruexAdRenderer");
-    text.setTextColor(Color.RED);
-    //text.setBackgroundColor(Color.BLUE);
-    text.setLayoutParams(new MarginLayoutParams(MarginLayoutParams.MATCH_PARENT, MarginLayoutParams.MATCH_PARENT));
-    this.addView(text);
+//
+//    TextView text = new TextView(getContext());
+//    text.setText("This is the TruexAdRenderer");
+//    text.setTextColor(Color.RED);
+//    //text.setBackgroundColor(Color.BLUE);
+//    text.setLayoutParams(new MarginLayoutParams(MarginLayoutParams.MATCH_PARENT, MarginLayoutParams.MATCH_PARENT));
+//    this.addView(text);
 
     Log.i(CLASS_NAME, "*** configureComponent complete");
   }
