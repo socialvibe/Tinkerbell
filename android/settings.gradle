@@ -6,6 +6,8 @@ include ':app'
 includeBuild('../node_modules/@react-native/gradle-plugin')
 
 // Uncomment for local TAR builds.
-include ':TruexAdRenderer'
-project(':TruexAdRenderer').projectDir = new File(settingsDir, '../../TruexAdRenderer-Android/TruexAdRenderer')
+//include ':TruexAdRenderer'
+//project(':TruexAdRenderer').projectDir = new File(settingsDir, '../../TruexAdRenderer-Android/TruexAdRenderer')
 
+include ':TestAdRenderer'
+project(':TestAdRenderer').projectDir = new File(settingsDir, '../../TruexAdRenderer-Android/TestAdRenderer')

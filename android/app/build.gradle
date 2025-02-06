@@ -125,5 +125,6 @@ dependencies {
 
     // Local Project dependency
     // Also need to uncomment settings under settings.gradle
-    implementation project(':TruexAdRenderer')
+//    implementation project(':TruexAdRenderer')
+    implementation project(':TestAdRenderer')
 }

@@ -16,13 +16,13 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.UIManagerHelper;
 import com.facebook.react.uimanager.events.Event;
 import com.facebook.react.uimanager.events.EventDispatcher;
-//import com.truex.adrenderer.TruexAdEvent;
-//import com.truex.adrenderer.TruexAdRenderer;
+import com.truex.adrenderer.TruexAdEvent;
+import com.truex.adrenderer.TruexAdRenderer;
 
 public class TruexAdView extends FrameLayout {
   private final static String CLASS_NAME = TruexAdView.class.getSimpleName();
 
-  //private TruexAdRenderer truexAdRenderer;
+  private TruexAdRenderer truexAdRenderer;
 
   public TruexAdView(Context context) {
     super(context);
@@ -57,15 +57,15 @@ public class TruexAdView extends FrameLayout {
 
   public void startAd(String vastConfigUrl) {
     Log.i(CLASS_NAME, "*** startAd: " + vastConfigUrl);
-//    if (truexAdRenderer != null) {
-//      truexAdRenderer.stop();
-//    }
-//
-//    truexAdRenderer = new TruexAdRenderer(getContext());
-//    truexAdRenderer.addEventListener(null, this::emitAdEvent); // listen to all events
-//
-//    truexAdRenderer.init(vastConfigUrl);
-//    truexAdRenderer.start(this);
+    if (truexAdRenderer != null) {
+      truexAdRenderer.stop();
+    }
+
+    truexAdRenderer = new TruexAdRenderer(getContext());
+    truexAdRenderer.addEventListener(null, this::emitAdEvent); // listen to all events
+
+    truexAdRenderer.init(vastConfigUrl);
+    truexAdRenderer.start(this);
   }
 
   public void emitAdError(String message) {
