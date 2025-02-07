@@ -2,7 +2,7 @@
  * Tinkerbell: Sample Truex React Native Demonstration App
  */
 import React, {useCallback, useState} from "react";
-import {Button, type NativeSyntheticEvent, SafeAreaView, StyleSheet, Text, View} from "react-native";
+import {Button, Linking, type NativeSyntheticEvent, SafeAreaView, StyleSheet, Text, View} from "react-native";
 
 import Video from 'react-native-video';
 
@@ -11,7 +11,7 @@ import TruexAdView, {toAdEventType, TruexAdEvent, TruexAdEventType} from './spec
 function App(): React.JSX.Element {
   const [isShowingTruex, setShowingTruex] = useState(false);
 
-  const onAdEvent = useCallback((dispatchedEvent: NativeSyntheticEvent<TruexAdEvent>) => {
+  const onAdEvent = useCallback(async (dispatchedEvent: NativeSyntheticEvent<TruexAdEvent>) => {
     const event = dispatchedEvent.nativeEvent;
     const eventType = toAdEventType(event.eventType);
 
@@ -23,7 +23,12 @@ function App(): React.JSX.Element {
 
     switch (eventType) {
       case TruexAdEventType.PopupWebsite:
-        // TODO: open external site
+        // Already handled in TruexAdView
+        // const url = event.url;
+        // if (url && await Linking.canOpenURL(url)) {
+        //   console.log("opening url: " + url);
+        //   return Linking.openURL(url);
+        // }
         break;
 
       // Completion events:
