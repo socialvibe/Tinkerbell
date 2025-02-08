@@ -121,7 +121,7 @@ dependencies {
     implementation jscFlavor
 
     // External Library Dependency
-     implementation("com.truex:TruexAdRenderer-Android:2.10.2")
+     implementation("com.truex:TruexAdRenderer-Android:2.10.4")
 
     // Local Project dependency
     // Also need to uncomment settings under settings.gradle
