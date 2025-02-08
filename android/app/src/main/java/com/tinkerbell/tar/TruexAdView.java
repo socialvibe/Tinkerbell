@@ -71,7 +71,7 @@ public class TruexAdView extends FrameLayout {
         break;
 
       case POPUP_WEBSITE:
-        // Easier to just pop open the web site here, that also auto-pauses/resumes TAR better.
+        // Easier to just pop open the web site here.
         String url = (String) data.get("url");
         Context context = getContext();
         Activity activity = getActivity(context);
